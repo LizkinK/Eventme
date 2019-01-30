@@ -755,7 +755,7 @@ a {
   border-radius: 16px;
 }
 .visible {
-  display: flex;
+  display: flex!important;
 }
 
 // profile
@@ -1598,6 +1598,53 @@ textarea:-ms-input-placeholder {
   position: absolute;
   top: 9.5%;
   border-radius: 16px;
+}
+.header_mobile_toggle_menu_new {
+  height: 91vh;
+  top: 3.250em;
+  width: 100vw;
+  background: #24292F;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 999;
+  display: none;
+  position: absolute;
+  .header_mobile_toggle_menu-nav_new{
+    padding: 0 1.313em 0 1.38em;
+  }  
+  .header_mobile_toggle_menu_item {
+    margin-top: 1.313em;
+    a{
+      @include font;
+      font-size: 18px;
+      color: #E5E5E5;
+      margin-left: 0.722em;      
+    }
+    svg {
+      width: 1.250em;
+    }
+  }
+}
+.fixed {
+	overflow: hidden;
+  height: 100%;
+  .search-job__header__menu {
+    position: relative;
+  }
+  .search-job__header__menu-1 {
+    transform: rotate(40deg);
+    top: 0.375em;
+    position: absolute;
+  }
+  .search-job__header__menu-3 {
+    transform: rotate(-40deg);
+    top: 0.375em;
+    position: absolute;
+  }
+  .search-job__header__menu-2 {
+    opacity: 0;
+  }
 }
 
 
