@@ -95,7 +95,7 @@
   border: none;
   margin-top: 1.222em;
   width: 100%;
-  max-width: 18.889em;
+  max-width: 24.889em;
   height: 2.889em;
   background: #2B5AFF;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
@@ -180,7 +180,7 @@ a {
 
 .registration-form__container, .registration-next-form__container {
   width: 100%;
-  max-width: 31.250em; }
+  max-width: 26em; }
 
 .registration-form__container-item, .profile__container__prize__act-btn-item {
   display: flex;
@@ -268,7 +268,7 @@ a {
 .registration-form__container-more-details__item, .profile__container__prize__act-item {
   display: flex;
   width: 49%;
-  max-width: 10.125em;
+  max-width: 12.5em;
   height: 7.063em;
   flex-direction: column;
   align-items: flex-start;
@@ -288,6 +288,9 @@ a {
   line-height: normal;
   font-size: 18px;
   color: #24292F; }
+
+.registration-form__container-more-details__item-topic {
+  max-width: 8.375em; }
 
 .registration-form__container-more-details__item-topic, .registration-next-form__item-topic, .profile__container__prize__act-item__topic {
   margin: 0; }
@@ -685,6 +688,10 @@ a {
   width: 180px;
   background-color: #CACACA;
   border-radius: 16px; }
+
+.regictration-photo__btn-container {
+  width: 107%;
+  max-width: 21.375em; }
 
 .visible {
   display: flex !important; }
@@ -1113,7 +1120,7 @@ a {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
-  max-width: 21.375em;
+  max-width: 25.675em;
   height: 3.5em;
   font-family: 'Lato', sans-serif;
   font-style: normal;
@@ -1127,6 +1134,9 @@ a {
   color: #24292F;
   margin-bottom: 2.500em;
   cursor: pointer; }
+  @media all and (min-width: 700px) {
+    .job__btn-call-friends, .response__container__btn {
+      max-width: 22em; } }
 
 .job__btn-respond, .job__btn-sent, .blue, .offer__container__form__btn {
   background: #2B5AFF;
@@ -1135,7 +1145,7 @@ a {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
-  max-width: 21.375em;
+  max-width: 25.675em;
   height: 3.5em;
   font-family: 'Lato', sans-serif;
   font-style: normal;
@@ -1146,6 +1156,9 @@ a {
   color: #FFFFFF;
   cursor: pointer;
   position: relative; }
+  @media all and (min-width: 700px) {
+    .job__btn-respond, .job__btn-sent, .blue, .offer__container__form__btn {
+      max-width: 22em; } }
 
 .job__btn-respond__content {
   display: flex;
@@ -1331,7 +1344,7 @@ a {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
-  max-width: 21.375em;
+  max-width: 25.675em;
   height: 3.5em;
   font-family: 'Lato', sans-serif;
   font-style: normal;
@@ -1341,6 +1354,9 @@ a {
   text-align: center;
   color: #FFFFFF;
   margin-top: 1.25em; }
+  @media all and (min-width: 700px) {
+    .offer-success__container__btn, .profile__container__prize__act__btn {
+      max-width: 22em; } }
 
 .white, .profile__container__prize__act__btn:last-child {
   background-color: #fff;
@@ -1473,7 +1489,7 @@ textarea:-ms-input-placeholder {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
-  max-width: 21.375em;
+  max-width: 25.675em;
   height: 3.5em;
   font-family: 'Lato', sans-serif;
   font-style: normal;
@@ -1483,6 +1499,9 @@ textarea:-ms-input-placeholder {
   text-align: center;
   color: #FFFFFF;
   margin-top: 1.250em; }
+  @media all and (min-width: 700px) {
+    .invite__container__btn {
+      max-width: 22em; } }
 
 .invite__container__topic:last-child {
   margin-top: 45px; }
@@ -1512,7 +1531,7 @@ textarea:-ms-input-placeholder {
   width: 42px;
   height: 42px; }
 
-.invite__container__friends-items-items, .points__container__conditions__topic:nth-child(2), .invite__container {
+.invite__container__friends-items-items, .points__container__conditions__topic:nth-child(2), .invite__container, .registration {
   margin-bottom: 1.875em; }
 
 .points__container__top-place {
@@ -1543,7 +1562,7 @@ textarea:-ms-input-placeholder {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
-  max-width: 21.375em;
+  max-width: 25.675em;
   height: 3.5em;
   font-family: 'Lato', sans-serif;
   font-style: normal;
@@ -1554,6 +1573,9 @@ textarea:-ms-input-placeholder {
   color: #FFFFFF;
   margin-top: 25px;
   margin-bottom: 25px; }
+  @media all and (min-width: 700px) {
+    .points__container__btn {
+      max-width: 22em; } }
 
 .points__container__topic {
   margin-top: 6px;
@@ -1606,7 +1628,7 @@ textarea:-ms-input-placeholder {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
-  max-width: 21.375em;
+  max-width: 25.675em;
   height: 3.5em;
   font-family: 'Lato', sans-serif;
   font-style: normal;
@@ -1620,6 +1642,9 @@ textarea:-ms-input-placeholder {
   background-color: #fff;
   border: 1px solid #CACACA;
   color: #24292F; }
+  @media all and (min-width: 700px) {
+    .top__container__btn {
+      max-width: 22em; } }
 
 .top__container__btn-invite {
   background: #2B5AFF;
@@ -1628,7 +1653,7 @@ textarea:-ms-input-placeholder {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
-  max-width: 21.375em;
+  max-width: 25.675em;
   height: 3.5em;
   font-family: 'Lato', sans-serif;
   font-style: normal;
@@ -1638,6 +1663,9 @@ textarea:-ms-input-placeholder {
   text-align: center;
   color: #FFFFFF;
   margin-top: 2.250em; }
+  @media all and (min-width: 700px) {
+    .top__container__btn-invite {
+      max-width: 22em; } }
 
 .search-job__topic-article-item {
   margin-top: 1.125em; }
@@ -1649,7 +1677,7 @@ textarea:-ms-input-placeholder {
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   width: 100%;
-  max-width: 21.375em;
+  max-width: 25.675em;
   height: 3.5em;
   font-family: 'Lato', sans-serif;
   font-style: normal;
@@ -1660,6 +1688,9 @@ textarea:-ms-input-placeholder {
   color: #FFFFFF;
   margin-top: 3.125em;
   margin-bottom: 2.938em; }
+  @media all and (min-width: 700px) {
+    .search-job__topic-btn {
+      max-width: 22em; } }
 
 .profile__container__prize__act-btn-item {
   width: 100%; }
@@ -1770,6 +1801,11 @@ textarea:-ms-input-placeholder {
     padding: 0.375em 0.625em; }
   .top__container__grid:before {
     top: 1.563em; }
+  .points__container button, .job__container button {
+    max-width: 100%; }
+  .top__container button {
+    margin-left: .5em;
+    max-width: 24em; }
   .right {
     align-items: flex-start;
     margin-left: 0;

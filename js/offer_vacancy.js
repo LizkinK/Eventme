@@ -16,13 +16,13 @@ let check = (e) =>{
 }
 let toggle = (e) => {
     if(e.target === hasLink[0]){
-        hasLink[0].classList.add('unvisible');
-        hasLink[1].classList.remove('unvisible');
-        description.classList.remove('unvisible');
+        hasLink[0].classList.add('invisible');
+        hasLink[1].classList.remove('invisible');
+        description.classList.remove('invisible');
     }else if(e.target === hasLink[1]){
-        hasLink[1].classList.add('unvisible');
-        hasLink[0].classList.remove('unvisible');
-        description.classList.add('unvisible');
+        hasLink[1].classList.add('invisible');
+        hasLink[0].classList.remove('invisible');
+        description.classList.add('invisible');
     }
 }
 

@@ -40,7 +40,7 @@
 					</div>
 					<div class="registration-form__container-item">
 						<label class="registration-form__container__label" for="check4">Дата рождения</label>
-						<input type="text" id="check4" placeholder="ДД.ММ.ГГГГ" class="registration-form__container__input">
+						<input type="number" id="check4" placeholder="ДД.ММ.ГГГГ" class="registration-form__container__input" name="date">
 						<p class="wrong">Укажите дату</p>
 						<p class="wrong-date">Да вы терминафтер!</p>
 					</div>
@@ -82,10 +82,12 @@
 					</div>
 					<button class="registration-form__container__btn disabled" type="submit">Далее</button>
 					<p class="wrong-form-topic">Чтобы продолжить, заполните поля:</p>
-					<p class="wrong-form">Имя, Фамилия, Дата рождения, Пол, Согласие на обработку данных</p>
+					<p class="wrong-form"></p>
 				</form>
 			</div>
 		</div>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="libs/jquery.maskedinput.min.js"></script>
 	<script src = 'js/index.js'></script>
 	</body>
 </html>

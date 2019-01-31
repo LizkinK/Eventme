@@ -15,15 +15,17 @@ const wrongLength = document.getElementsByClassName('wrong-leng');
 const wrong = document.getElementsByClassName('wrong');
 const formInput = document.getElementsByClassName('registration-form__container-item');
 const btn = document.getElementsByClassName('registration-form__container__btn')[0];
+const warningTextTopic = document.getElementsByClassName('wrong-form-topic')[0];
+const warningText = document.getElementsByClassName('wrong-form')[0];
 // btn.disabled = true;
+const re = /[А-Яа-яЁё]/g;
 
 // form1 checked
 let checkForm = (e) => {
     let text = '';
-    let re = /[А-Яа-яЁё]/g;
     if(e.target === formName || e.target === formSurname || e.target === formPatronymic){
         let index = 0;
-        // determine which input has been changed
+        // determine which input has been changed and create this index;
         if(e.target === formName){
             index = 0;
         }else if(e.target === formSurname){
@@ -31,7 +33,7 @@ let checkForm = (e) => {
         }else if(e.target === formPatronymic){
             index = 2;
         }
-        // if language error all input
+        // if language wrong all input
         if(!e.target.value.match(re) && e.target.value){
             if(e.target !== formPatronymic){
                 wrong[index].classList.remove('visible');
@@ -46,28 +48,30 @@ let checkForm = (e) => {
             }else{
                 formInput[index].classList.remove('wrong-input');
             }
-        // if language error part of input
+        // if language wrong part of input
         }else if(e.target.value.match(re)){
-                if(e.target.value.length !== e.target.value.match(re).length){
+            if(e.target.value.length !== e.target.value.match(re).length){
             if(e.target !== formPatronymic){
                 wrong[index].classList.remove('visible');
             }
             formInput[index].classList.add('wrong-input');            
             wrongLength[index].classList.add('visible');
         // if input is correct 
-        }}else if(e.target.value.match(re) && e.target.value.length === e.target.value.match(re).length){
+        }else if(e.target.value.match(re) && e.target.value.length === e.target.value.match(re).length){
             if(e.target !== formPatronymic){
                 wrong[index].classList.remove('visible');
             }
             formInput[index].classList.remove('wrong-input');
             wrongLength[index].classList.remove('visible');
-        }
+        }}
     }
-    // check the form if all of inputs are filled right, the button is active 
+    // check the form if all of inputs are filled right, the button will be active 
     if(formName.value.length && formSurname.value.length && agreementInput.checked &&
        formMaleInput[0].checked || formName.value.length && formSurname.value.length && agreementInput.checked && formMaleInput[1].checked){
+        // check language
         if(formName.value.length === formName.value.match(re).length && 
         formSurname.value.length === formSurname.value.match(re).length){
+            // check language if patronymic is not empty
             if(formPatronymic.value.length){
                 if(formPatronymic.value.match(re)){
                     if(formPatronymic.value.length === formPatronymic.value.match(re).length){
@@ -82,10 +86,12 @@ let checkForm = (e) => {
     }else{
         btn.classList.add('disabled');
     }
+        
 }
 
 btn.addEventListener('click', (e)=>{
     e.preventDefault();
+    // check form & add red color to input
     if(!formName.value.length){
         formInput[0].classList.add('wrong-input');
         wrong[0].classList.add('visible');
@@ -102,22 +108,38 @@ btn.addEventListener('click', (e)=>{
     if(!agreementInput.checked){
         agreementInput.classList.add('wrong-check');
     }
+    // if button click, check that all input has filled or create warning text 
+    let text = '';
+    if(!formName.value.length || formName.value.length && !formName.value.match(re) || formName.value.length !== formName.value.match(re).length){
+        text += ' Имя ';
+    }
+    if(!formSurname.value.length || formSurname.value.length && !formSurname.value.match(re) || formSurname.value.length !== formSurname.value.match(re).length){
+        if(text.length) text += ',';
+        text += ' Фамилия ';
+    }
+    if(!formMaleInput[0].checked && !formMaleInput[1].checked){
+        if(text.length) text += ',';
+        text += ' Пол ';
+    }
+    if(!agreementInput.checked){
+        if(text.length) text += ',';
+        text += ' Согласие на обработку данных';
+    }
+    if(text.length){
+        warningTextTopic.classList.add('visible');
+        warningText.classList.add('visible');
+    }
+    warningText.innerText = text;
 })
+// check male input
 let formMaleCheck = () => {
     if(formMaleInput[0].checked || formMaleInput[1].checked){
         formMaleInput[0].classList.remove('wrong-check');
         formMaleInput[1].classList.remove('wrong-check');
     }
 }
-formMale[0].addEventListener('click', formMaleCheck);
-formMale[1].addEventListener('click', formMaleCheck);
-agreement.addEventListener('click', (e)=>{
-    if(agreementInput.checked){
-        agreementInput.classList.remove('wrong-check');
-    }else{
-        agreementInput.classList.add('wrong-check');
-    }
-})
+
+// create new style for car block or medical block if it was clicked
 function chooseDetailes(){
     if(this == formMoreDetailes[0]){
         medicalBook = !medicalBook;
@@ -141,3 +163,13 @@ formMoreDetailes[1].addEventListener('click', chooseDetailes);
 form.addEventListener('keyup', checkForm);
 form.addEventListener('focusout', checkForm);
 form.addEventListener('click', checkForm);
+formMale[0].addEventListener('click', formMaleCheck);
+formMale[1].addEventListener('click', formMaleCheck);
+
+agreement.addEventListener('click', (e)=>{
+    if(agreementInput.checked){
+        agreementInput.classList.remove('wrong-check');
+    }else{
+        agreementInput.classList.add('wrong-check');
+    }
+})
