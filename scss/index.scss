@@ -355,6 +355,25 @@ a {
 .registration-form__container-more-details__item-topic {
   max-width: 8.375em;
 }
+.registration-form__container-item__date-input-container {
+  position: relative;
+  width: 100%;
+  .registration-form__container__input {
+    width: 100%;
+  }
+}
+#icon {
+  position: absolute;
+  bottom: 0.688em;
+  right: 0.188em;
+}
+#datepicker {
+  top: 2.725em;
+  right: .1em;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+}
 .registration-form__container-more-details__item-topic, .registration-next-form__item-topic, .profile__container__prize__act-item__topic {
   margin: 0;
 }
@@ -1445,6 +1464,7 @@ textarea:-ms-input-placeholder {
  } 
  .wrong-input {
     border-bottom: 1px solid #E84242;
+    color: #E84242;
  }
  .wrong-input::-webkit-input-placeholder { 
   color: #E84242;

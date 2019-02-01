@@ -19,7 +19,29 @@ const warningTextTopic = document.getElementsByClassName('wrong-form-topic')[0];
 const warningText = document.getElementsByClassName('wrong-form')[0];
 // btn.disabled = true;
 const re = /[А-Яа-яЁё]/g;
-
+// check date
+let = checkDateIntut = (date) =>{
+    let today = new Date().getTime();
+    if(!date){
+        wrong[2].classList.add('visible');
+        formDate.classList.add('wrong-input');
+        return false;
+    }else{
+        date = date.split('.');
+        wrong[2].classList.remove('visible');
+        formDate.classList.remove('wrong-input');
+        [date[0], date[1], date[2]] = [date[2], date[1], date[0]]
+        let clientsDate = new Date(...date).getTime();
+        if(clientsDate >= today){
+            $('.wrong-date').addClass('visible');
+            formDate.classList.add('wrong-input');  
+            return false;
+        }else{
+            $('.wrong-date').removeClass('visible');
+            return true;
+        }
+    }
+}
 // form1 checked
 let checkForm = (e) => {
     let text = '';
@@ -49,6 +71,9 @@ let checkForm = (e) => {
                 formInput[index].classList.remove('wrong-input');
             }
         // if language wrong part of input
+        }else if(e.target === formDate){
+            console.log(0000);
+            checkDateIntut(e.target.value);
         }else if(e.target.value.match(re)){
             if(e.target.value.length !== e.target.value.match(re).length){
             if(e.target !== formPatronymic){
@@ -64,13 +89,14 @@ let checkForm = (e) => {
             formInput[index].classList.remove('wrong-input');
             wrongLength[index].classList.remove('visible');
         }}
+        
     }
     // check the form if all of inputs are filled right, the button will be active 
     if(formName.value.length && formSurname.value.length && agreementInput.checked &&
        formMaleInput[0].checked || formName.value.length && formSurname.value.length && agreementInput.checked && formMaleInput[1].checked){
-        // check language
+        // check language && date
         if(formName.value.length === formName.value.match(re).length && 
-        formSurname.value.length === formSurname.value.match(re).length){
+        formSurname.value.length === formSurname.value.match(re).length && checkDateIntut(formDate.value)){
             // check language if patronymic is not empty
             if(formPatronymic.value.length){
                 if(formPatronymic.value.match(re)){
@@ -103,11 +129,11 @@ btn.addEventListener('click', (e)=>{
     if(!formMaleInput[0].checked && !formMaleInput[1].checked){
         formMaleInput[0].classList.add('wrong-check');
         formMaleInput[1].classList.add('wrong-check');
-        console.log(formMaleInput);
     }
     if(!agreementInput.checked){
         agreementInput.classList.add('wrong-check');
     }
+    checkDateIntut(formDate.value);
     // if button click, check that all input has filled or create warning text 
     let text = '';
     if(!formName.value.length || formName.value.length && !formName.value.match(re) || formName.value.length !== formName.value.match(re).length){
@@ -116,6 +142,10 @@ btn.addEventListener('click', (e)=>{
     if(!formSurname.value.length || formSurname.value.length && !formSurname.value.match(re) || formSurname.value.length !== formSurname.value.match(re).length){
         if(text.length) text += ',';
         text += ' Фамилия ';
+    }
+    if(!checkDateIntut(formDate.value)){
+        if(text.length) text += ',';
+        text += ' Дата рождения ';
     }
     if(!formMaleInput[0].checked && !formMaleInput[1].checked){
         if(text.length) text += ',';
@@ -128,6 +158,9 @@ btn.addEventListener('click', (e)=>{
     if(text.length){
         warningTextTopic.classList.add('visible');
         warningText.classList.add('visible');
+    }else{
+        warningTextTopic.classList.remove('visible');
+        warningText.classList.remove('visible');
     }
     warningText.innerText = text;
 })
@@ -138,7 +171,6 @@ let formMaleCheck = () => {
         formMaleInput[1].classList.remove('wrong-check');
     }
 }
-
 // create new style for car block or medical block if it was clicked
 function chooseDetailes(){
     if(this == formMoreDetailes[0]){
@@ -173,3 +205,35 @@ agreement.addEventListener('click', (e)=>{
         agreementInput.classList.add('wrong-check');
     }
 })
+  
+// calendar widget on JQuery
+$(function() {
+    // create calendar
+    $('#icon').on('click', ()=>{
+        $("#datepicker").toggleClass('invisible');
+    })
+    // add mask to input
+    let date = $('#check4');    
+    date.mask("99.99.9999");
+    // add value to input from calendar
+    $("#datepicker").datepicker({
+        onSelect: function(dateText, inst){
+        let actualDate = dateText.split('/');
+        [actualDate[0], actualDate[1]]=[actualDate[1], actualDate[0]];
+        actualDate = actualDate.join('.');        
+        date.val(actualDate);
+        checkDateIntut(date.val());
+    }
+  });
+  // find the date of input in the calendar
+    date.keyup(()=>{
+        let actualDate = date.val().split('.');
+        if(actualDate.length === 3){
+            [actualDate[0], actualDate[1]]=[actualDate[1], actualDate[0]];
+            actualDate = actualDate.join('/'); 
+            $( "#datepicker" ).datepicker( "setDate", actualDate );
+            checkDateIntut(date.val());
+        }
+    });
+
+});
