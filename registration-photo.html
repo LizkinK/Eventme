@@ -3,11 +3,12 @@
 	<head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">          
-		<title>Eventme</title>
+        <title>Eventme</title>        
+        <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
         <link rel="stylesheet" href="css/index.css">
 	</head>
 	<body>
-		<div class="registration-next">
+		<div class="registration-next ">
 			<div class="regictration-next__logo">
 				<img class="regictration-next__logo-img" src="img/path22.png">			
 				<p class="regictration-next__logo-topic">Помогаем найти работу для молодых и горячих 🔥</p>			
@@ -21,41 +22,44 @@
 				<h2 class="registration-next-form-topic">Загрузи фотографии</h2>
 				<p class="registration-next-form-article">Если хочешь, чтобы работодатель 100% тебя взял, загрузи одну или несколько фотографий</p>
             </div>
-            <div class="regictration-photo__photo-upload">
-                <div class="regictration-photo__photo-upload__container">
-                    <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.6665 2.66667H20.4398L18.7865 0.866667C18.2932 0.32 17.5732 0 16.8265 0H11.1732C10.4265 0 9.7065 0.32 9.19984 0.866667L7.55984 2.66667H3.33317C1.8665 2.66667 0.666504 3.86667 0.666504 5.33333V21.3333C0.666504 22.8 1.8665 24 3.33317 24H24.6665C26.1332 24 27.3332 22.8 27.3332 21.3333V5.33333C27.3332 3.86667 26.1332 2.66667 24.6665 2.66667ZM13.9998 9.06668C11.6434 9.06668 9.73317 10.9769 9.73317 13.3334C9.73317 15.6898 11.6434 17.6 13.9998 17.6C16.3562 17.6 18.2665 15.6898 18.2665 13.3334C18.2665 10.9769 16.3562 9.06668 13.9998 9.06668ZM7.33317 13.3333C7.33317 17.0133 10.3198 20 13.9998 20C17.6798 20 20.6665 17.0133 20.6665 13.3333C20.6665 9.65333 17.6798 6.66667 13.9998 6.66667C10.3198 6.66667 7.33317 9.65333 7.33317 13.3333Z" fill="#2B5AFF"/>
-                    </svg>
-                    <p class="regictration-photo__photo-upload__topic">Выбрать фото</p>      
-                    <p class="regictration-photo__photo-upload__article">Фотография должна быть формата JPG или PNG, не больше 5 Мб</p>      
-                </div>
-            </div>
-            <div class="regictration-photo__photo-upload success">
-                <div class="regictration-photo__photo-upload__container-successfully-uploaded">
+            <div class="regictration-photo__photo-upload__container-for-photo success dropzone-previews" id="tpl">
+                <div class="regictration-photo__photo-upload__container-successfully-uploaded dz-details">
                     <div class="regictration-photo__photo-upload__uploaded-img">
+                        <img data-dz-thumbnail src='' alt ='' />
                     </div>
                     <div class="regictration-photo__photo-upload__progress">
-                        <p class="regictration-photo__photo-upload__progress__name-photo">Image-DCD300.jpg</p>
+                        <p class="regictration-photo__photo-upload__progress__name-photo dz-filename" data-dz-name></p>
                         <div class="regictration-photo__photo-upload__progress__bar">
                             <div class="regictration-photo__photo-upload__progress__bar__line">                                    
                             </div>
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg data-dz-remove width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M13.3002 0.709956C13.1134 0.522704 12.8597 0.417471 12.5952 0.417471C12.3307 0.417471 12.077 0.522704 11.8902 0.709956L7.00022 5.58996L2.11021 0.699956C1.92338 0.512704 1.66973 0.407471 1.40521 0.407471C1.1407 0.407471 0.887046 0.512704 0.700215 0.699956C0.310215 1.08996 0.310215 1.71996 0.700215 2.10996L5.59021 6.99996L0.700215 11.89C0.310215 12.28 0.310215 12.91 0.700215 13.3C1.09021 13.69 1.72021 13.69 2.11021 13.3L7.00022 8.40996L11.8902 13.3C12.2802 13.69 12.9102 13.69 13.3002 13.3C13.6902 12.91 13.6902 12.28 13.3002 11.89L8.41021 6.99996L13.3002 2.10996C13.6802 1.72996 13.6802 1.08996 13.3002 0.709956Z" fill="#8C8C8C"/>
                             </svg>
                         </div>
-                        <p class="regictration-photo__photo-upload__progress__info">Загружено 53%</p>
+                        <p class="regictration-photo__photo-upload__progress__info" ></p>
                     </div>
                 </div>
+            </div>
+            <div class="regictration-photo__photo-upload">   
+                <div action="/" class="regictration-photo__photo-upload_dropzone dropzone" id="my-dropzone">       
+                </div>   
                 <div class="regictration-photo__photo-upload__container">
-                    <p class="regictration-photo__photo-upload__topic">Выбрать еще фото</p>      
-                    <p class="regictration-photo__photo-upload__article">Фотография должна быть формата JPG или PNG, не больше 5 Мб</p>      
-                </div>
+                    <svg class="regictration-photo__photo-upload__container__svg" width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.6665 2.66667H20.4398L18.7865 0.866667C18.2932 0.32 17.5732 0 16.8265 0H11.1732C10.4265 0 9.7065 0.32 9.19984 0.866667L7.55984 2.66667H3.33317C1.8665 2.66667 0.666504 3.86667 0.666504 5.33333V21.3333C0.666504 22.8 1.8665 24 3.33317 24H24.6665C26.1332 24 27.3332 22.8 27.3332 21.3333V5.33333C27.3332 3.86667 26.1332 2.66667 24.6665 2.66667ZM13.9998 9.06668C11.6434 9.06668 9.73317 10.9769 9.73317 13.3334C9.73317 15.6898 11.6434 17.6 13.9998 17.6C16.3562 17.6 18.2665 15.6898 18.2665 13.3334C18.2665 10.9769 16.3562 9.06668 13.9998 9.06668ZM7.33317 13.3333C7.33317 17.0133 10.3198 20 13.9998 20C17.6798 20 20.6665 17.0133 20.6665 13.3333C20.6665 9.65333 17.6798 6.66667 13.9998 6.66667C10.3198 6.66667 7.33317 9.65333 7.33317 13.3333Z" fill="#2B5AFF"/>
+                    </svg>                        
+                    <p class="regictration-photo__photo-upload__topic">Выбрать фото</p>  
+                    <div class="regictration-photo__photo-upload__article"> 
+                        <p class="wrong">Не удалось загрузить фото.</p>   
+                        <p class="regictration-photo__photo-upload__article">Фотография должна быть формата JPG или PNG, не больше 5 Мб</p>      
+                    </div>
+                </div>     
             </div>
             <div class="regictration-photo__btn-container">
                 <button class="registration-form__container__btn" type="submit">Продолжить без фото</button>
                 <p class="regictration-photo__info">Фотографии можно будет изменить в профиле</p>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
         <script src='js/reg_photo.js'></script>
     </body>
