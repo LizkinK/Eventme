@@ -677,6 +677,14 @@ a {
   justify-content: space-between;
   display: none; }
 
+.regictration-photo__photo-upload__progress__bar__line-progress-color {
+  background: #2B5AFF;
+  height: 2px;
+  position: absolute; }
+
+.regictration-photo__photo-upload__progress__bar__line-progress-color.full {
+  background: #5BB953; }
+
 .successful-download .regictration-photo__photo-upload__container-for-photo {
   margin-top: 1.625em; }
 
@@ -684,14 +692,13 @@ a {
   display: flex; }
 
 .regictration-photo__photo-upload__uploaded-img {
-  width: 34%;
-  height: 112px; }
+  width: 35%; }
 
 .dz-remove {
   display: none; }
 
 .regictration-photo__photo-upload__progress {
-  width: 66%;
+  width: 64%;
   height: 7em;
   display: flex;
   flex-direction: column;
@@ -756,7 +763,8 @@ a {
   height: 2px;
   width: 180px;
   background-color: #CACACA;
-  border-radius: 16px; }
+  border-radius: 16px;
+  position: relative; }
 
 .regictration-photo__btn-container {
   width: 107%;
@@ -1337,7 +1345,7 @@ a {
   width: 30%;
   margin: 2.5em auto 0 auto; }
 
-.offer__container__offers-img img, .offer-success__container__offers-img img, .invite__container__friends-items-item__img img, .invite__container__offers-img img, .search-job__topic-img img, .profile__container__photo_container img {
+.offer__container__offers-img img, .offer-success__container__offers-img img, .invite__container__friends-items-item__img img, .invite__container__offers-img img, .search-job__topic-img img, .profile__container__photo_container img, .regictration-photo__photo-upload__uploaded-img img {
   width: 100%;
   height: 100%; }
 
@@ -1864,7 +1872,9 @@ textarea:-ms-input-placeholder {
   .profile__container__photo__phone {
     font-size: 14px; }
   .profile__container__photo__name {
-    font-size: 16px; } }
+    font-size: 16px; }
+  .regictration-photo__photo-upload__progress__bar__line {
+    width: 9.375em; } }
 
 @media all and (min-width: 700px) {
   .top__container__grid__item {

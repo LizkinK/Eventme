@@ -6,8 +6,10 @@ $(function() {
       console.log(file, progress);
       $('.registration-next').addClass('successful-download');
       $('.regictration-photo__photo-upload__progress__info').text(`Загружено ${progress}%`);
-      $('.regictration-photo__photo-upload__topic').text(`Выбрать ещё фото`);
-      
+      $('.regictration-photo__photo-upload__topic').text(`Выбрать ещё фото`);      
+    },
+    reset: function() {
+      $('.registration-next').removeClass('successful-download');     
     },
     previewTemplate: document
     .querySelector('#tpl')
