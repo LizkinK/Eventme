@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function(){
             if(text.length) text += ',';
             text += ' Фамилия ';
         }
-        if(!checkDateIntut(formDate.value)){
+        if(!checkDateIntut(formDate)){
             if(text.length) text += ',';
             text += ' Дата рождения ';
         }
