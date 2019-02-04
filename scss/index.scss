@@ -1737,6 +1737,17 @@ textarea:-ms-input-placeholder {
   }
 }
 
+@media all and (min-width: 600px){
+  .registration, .invite, .response, .offer-success, .points, .registration-next, .search-job, .top, .invite, .job, .profile {
+    overflow: auto;
+  }
+  .registration__progress:after, .registration-next__progress:after, .registration-photo__progress:after, .registration__progress:before, .registration-next__progress:before, .registration-photo__progress:before {
+    top: 0.688em;
+  }
+  .registration-next-form-topic {
+    margin-top: 1.25em;
+  }
+}
 
 @media all and (max-width: 350px){
   .regictration__logo-img, .regictration-next__logo-img, .regictration-photo__logo-img {
@@ -1810,7 +1821,7 @@ textarea:-ms-input-placeholder {
   }
   .profile__container__prize__act-btn-item {
     flex-direction: row;
-    .profile__container__prize__act__btn {
+    .profile__container__prize__act__btn:last-child {
       margin-left: 1.5em; 
     }
   }

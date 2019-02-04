@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
     let = checkDateIntut = (date) =>{
         let today = new Date().getTime();
         console.log(date);
-        if(!date){
+        if(!date.length){
             wrong[2].classList.add('visible');
             formDate.classList.add('wrong-input');
             return false;
@@ -62,10 +62,11 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
     formDate.addEventListener('keyup', ()=>{
-        let actualDate = formDate.value.split('.');
-        if(actualDate.length){
-            checkDateIntut(formDate.value);
-        }})
+        checkDateIntut(formDate.value);
+    })
+    formDate.addEventListener('focusout', ()=>{
+        checkDateIntut(formDate.value);
+    })
     // form1 checked
     let checkForm = (e) => {
         let text = '';
