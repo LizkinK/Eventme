@@ -391,6 +391,12 @@ a {
 .wrong-input, .wrong-input:focus {
   border-bottom: 1px solid #E84242 !important;
   color: #E84242; }
+  .wrong-input input, .wrong-input:focus input {
+    border-bottom: 1px solid #E84242 !important;
+    color: #E84242; }
+  .wrong-input input:focus, .wrong-input:focus input:focus {
+    border-bottom: 1px solid #E84242 !important;
+    color: #E84242; }
 
 .done {
   position: relative; }

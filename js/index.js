@@ -24,113 +24,119 @@ document.addEventListener('DOMContentLoaded', function(){
     // check date
     let = checkDateIntut = (date) =>{
         let today = new Date().getTime();
-        console.log(date);
-        if(!date.length){
+        if(!date.value){
+            wrongDate[0].classList.remove('visible');
+            wrongDate[1].classList.remove('visible');
             wrong[2].classList.add('visible');
             formDate.classList.add('wrong-input');
-            return false;
-        }else if(date.split('.')[1] > 12){
+            return false;        
+        }else if(date.value.split('.')[1] > 12){
+            wrongDate[0].classList.remove('visible');
+            wrongDate[1].classList.remove('visible');
+            wrong[2].classList.remove('visible');
             formDate.classList.add('wrong-input');
             return false;
+        }
+        date = date.value.split('.');
+        wrong[2].classList.remove('visible');
+        formDate.classList.remove('wrong-input');
+        [date[0], date[1], date[2]] = [date[2], date[1], date[0]];
+        let clientsDate = new Date(...date).getTime();
+        if(clientsDate >= today){
+            wrongDate[1].classList.remove('visible');
+            wrongDate[0].classList.add('visible');
+            formDate.classList.add('wrong-input');  
+            return false;
         }else{
-            date = date.split('.');
-            wrong[2].classList.remove('visible');
-            formDate.classList.remove('wrong-input');
-            [date[0], date[1], date[2]] = [date[2], date[1], date[0]];
-            let clientsDate = new Date(...date).getTime();
-            if(clientsDate >= today){
-                wrongDate[0].classList.add('visible');
+            // check 16 age
+            dateWorkAge = date;
+            dateWorkAge[0] = +dateWorkAge[0]+16;
+            dateWorkAge = new Date(...dateWorkAge).getTime();            
+            if(dateWorkAge > today){
+                wrongDate[0].classList.remove('visible');
+                wrongDate[1].classList.add('visible');
                 formDate.classList.add('wrong-input');  
                 return false;
-            }
-            else{
-                // check 16 age
-                dateWorkAge = date;
-                dateWorkAge[0] = +dateWorkAge[0]+16;
-                dateWorkAge = new Date(...dateWorkAge).getTime();            
-                if(dateWorkAge > today){
-                    wrongDate[1].classList.add('visible');
-                    formDate.classList.add('wrong-input');  
-                    return false;
-                }else{
-                    wrongDate[0].classList.remove('visible');
-                    wrongDate[1].classList.remove('visible');
-                    formDate.classList.remove('wrong-input');
-                    return true;
-                }
+            }else{
+                wrongDate[0].classList.remove('visible');
+                wrongDate[1].classList.remove('visible');
+                formDate.classList.remove('wrong-input');
+                return true;
             }
         }
     }
     formDate.addEventListener('keyup', ()=>{
-        checkDateIntut(formDate.value);
+        checkDateIntut(formDate);
     })
     formDate.addEventListener('focusout', ()=>{
-        checkDateIntut(formDate.value);
+        checkDateIntut(formDate);
     })
+
+    // check name, surname, patronymic
+    let checkName = (date) => {
+        let index = 0;
+        // determine which input has been changed and create this index;
+        if(date === formName){
+            index = 0;
+        }else if(date === formSurname){
+            index = 1;
+        }else if(date === formPatronymic){
+            index = 2;
+        }
+        // if language wrong all input
+        if(!date.value.match(re) && date.value){  
+            console.log(formInput[index]); 
+            wrong[index].classList.remove('visible');
+            console.log(formInput[index]);
+            formInput[index].classList.add('wrong-input');
+            wrongLength[index].classList.add('visible');
+            return false;
+        // if input is empty
+        }else if(!date.value){
+            wrongLength[index].classList.remove('visible');
+            if(date !== formPatronymic){
+                formInput[index].classList.add('wrong-input');
+                wrong[index].classList.add('visible');
+                return false;
+            }else{
+                formInput[index].classList.remove('wrong-input');
+                return true;
+            }
+        // if language wrong part of input
+        }else if(date.value.match(re)){
+            if(date.value.length !== date.value.match(re).length){
+                if(date !== formPatronymic){
+                    wrong[index].classList.remove('visible');
+                }
+            formInput[index].classList.add('wrong-input');            
+            wrongLength[index].classList.add('visible');
+            return false;
+        // if input is correct 
+        }else if(date.value.match(re) && date.value.length === date.value.match(re).length){
+            if(date !== formPatronymic){
+                wrong[index].classList.remove('visible');
+            }
+            formInput[index].classList.remove('wrong-input');
+            wrongLength[index].classList.remove('visible');
+            return true;
+        }}
+        
+    }
     // form1 checked
     let checkForm = (e) => {
         let text = '';
-        if(e.target === formName || e.target === formSurname || e.target === formPatronymic){
-            let index = 0;
-            // determine which input has been changed and create this index;
-            if(e.target === formName){
-                index = 0;
-            }else if(e.target === formSurname){
-                index = 1;
-            }else if(e.target === formPatronymic){
-                index = 2;
-            }
-            // if language wrong all input
-            if(!e.target.value.match(re) && e.target.value){
-                if(e.target !== formPatronymic){
-                    wrong[index].classList.remove('visible');
-                }
-                formInput[index].classList.add('wrong-input');
-                wrongLength[index].classList.add('visible');
-            // if input is empty
-            }else if(!e.target.value && e.type !== 'click'){
-                wrongLength[index].classList.remove('visible');
-                if(e.target !== formPatronymic){
-                    wrong[index].classList.add('visible');
-                }else{
-                    formInput[index].classList.remove('wrong-input');
-                }
-            // if language wrong part of input
-            }else if(e.target === formDate){
-                console.log(0000);
-                checkDateIntut(e.target.value);
-            }else if(e.target.value.match(re)){
-                if(e.target.value.length !== e.target.value.match(re).length){
-                if(e.target !== formPatronymic){
-                    wrong[index].classList.remove('visible');
-                }
-                formInput[index].classList.add('wrong-input');            
-                wrongLength[index].classList.add('visible');
-            // if input is correct 
-            }else if(e.target.value.match(re) && e.target.value.length === e.target.value.match(re).length){
-                if(e.target !== formPatronymic){
-                    wrong[index].classList.remove('visible');
-                }
-                formInput[index].classList.remove('wrong-input');
-                wrongLength[index].classList.remove('visible');
-            }}
-            
+        if(e.target === formName || e.target === formSurname || e.target === formPatronymic){           
+            checkName(e.target);
+        }
+        if(e.target === formDate){
+            checkDateIntut(e.target);
         }
         // check the form if all of inputs are filled right, the button will be active 
-        if(formName.value.length && formSurname.value.length && agreementInput.checked &&
-        formMaleInput[0].checked || formName.value.length && formSurname.value.length && agreementInput.checked && formMaleInput[1].checked){
+        if(agreementInput.checked && formMaleInput[0].checked || agreementInput.checked && formMaleInput[1].checked){
             // check language && date
-            if(formName.value.length === formName.value.match(re).length && 
-            formSurname.value.length === formSurname.value.match(re).length && checkDateIntut(formDate.value)){
+            if(checkName(formName) && checkName(formSurname) && checkName(formPatronymic) && checkDateIntut(formDate)){
                 // check language if patronymic is not empty
-                if(formPatronymic.value.length){
-                    if(formPatronymic.value.match(re)){
-                        if(formPatronymic.value.length === formPatronymic.value.match(re).length){
-                            btn.classList.remove('disabled');
-                        } 
-                    }
-                }
-            btn.classList.remove('disabled');
+                btn.classList.remove('disabled');
             }else{
                 btn.classList.add('disabled');
             }
@@ -143,14 +149,9 @@ document.addEventListener('DOMContentLoaded', function(){
     btn.addEventListener('click', (e)=>{
         e.preventDefault();
         // check form & add red color to input
-        if(!formName.value.length){
-            formInput[0].classList.add('wrong-input');
-            wrong[0].classList.add('visible');
-        }
-        if(!formSurname.value.length){
-            formInput[1].classList.add('wrong-input');
-            wrong[1].classList.add('visible');
-        }
+        checkName(formName);
+        checkName(formSurname);
+        checkName(formPatronymic);
         if(!formMaleInput[0].checked && !formMaleInput[1].checked){
             formMaleInput[0].classList.add('wrong-check');
             formMaleInput[1].classList.add('wrong-check');
@@ -158,13 +159,13 @@ document.addEventListener('DOMContentLoaded', function(){
         if(!agreementInput.checked){
             agreementInput.classList.add('wrong-check');
         }
-        checkDateIntut(formDate.value);
+        checkDateIntut(formDate);
         // if button click, check that all input has filled or create warning text 
         let text = '';
-        if(!formName.value.length || formName.value.length && !formName.value.match(re) || formName.value.length !== formName.value.match(re).length){
+        if(!checkName(formName)){
             text += ' Имя ';
         }
-        if(!formSurname.value.length || formSurname.value.length && !formSurname.value.match(re) || formSurname.value.length !== formSurname.value.match(re).length){
+        if(!checkName(formSurname)){
             if(text.length) text += ',';
             text += ' Фамилия ';
         }

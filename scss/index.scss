@@ -474,6 +474,14 @@ a {
 .wrong-input, .wrong-input:focus {
     border-bottom: 1px solid #E84242!important;
     color: #E84242;
+    input {
+      border-bottom: 1px solid #E84242!important;
+      color: #E84242;
+    }
+    input:focus {
+      border-bottom: 1px solid #E84242!important;
+      color: #E84242;
+    }
 }
 
 // registration2
