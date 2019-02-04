@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }}
         
     }
+   
     // form1 checked
     let checkForm = (e) => {
         let text = '';
@@ -217,10 +218,8 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     formMoreDetailes[0].addEventListener('click', chooseDetailes);
     formMoreDetailes[1].addEventListener('click', chooseDetailes);
-
     form.addEventListener('keyup', checkForm);
     form.addEventListener('focusout', checkForm);
-    form.addEventListener('click', checkForm);
     formMale[0].addEventListener('click', formMaleCheck);
     formMale[1].addEventListener('click', formMaleCheck);
 

@@ -260,7 +260,7 @@ a {
   font-size: 18px;
 }
 .registration-form__container__input:focus {
-  outline-color: #fff;
+  outline-color: transparent;
   border-bottom: 1px solid #2B5AFF;
 }
 .registration-form__container__input::placeholder {
@@ -471,16 +471,12 @@ a {
   margin-top: 13px;
   display: none;
 }
+
 .wrong-input, .wrong-input:focus {
     border-bottom: 1px solid #E84242!important;
     color: #E84242;
-    input {
-      border-bottom: 1px solid #E84242!important;
-      color: #E84242;
-    }
-    input:focus {
-      border-bottom: 1px solid #E84242!important;
-      color: #E84242;
+    input, input:focus {
+      border: none;
     }
 }
 

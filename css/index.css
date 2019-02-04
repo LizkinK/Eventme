@@ -209,7 +209,7 @@ a {
   font-size: 18px; }
 
 .registration-form__container__input:focus {
-  outline-color: #fff;
+  outline-color: transparent;
   border-bottom: 1px solid #2B5AFF; }
 
 .registration-form__container__input::placeholder {
@@ -391,12 +391,8 @@ a {
 .wrong-input, .wrong-input:focus {
   border-bottom: 1px solid #E84242 !important;
   color: #E84242; }
-  .wrong-input input, .wrong-input:focus input {
-    border-bottom: 1px solid #E84242 !important;
-    color: #E84242; }
-  .wrong-input input:focus, .wrong-input:focus input:focus {
-    border-bottom: 1px solid #E84242 !important;
-    color: #E84242; }
+  .wrong-input input, .wrong-input input:focus, .wrong-input:focus input, .wrong-input:focus input:focus {
+    border: none; }
 
 .done {
   position: relative; }
