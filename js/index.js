@@ -26,19 +26,32 @@ let = checkDateIntut = (date) =>{
         wrong[2].classList.add('visible');
         formDate.classList.add('wrong-input');
         return false;
+    }else if(date.split('.')[1] > 12){
+        formDate.classList.add('wrong-input');
+        return false;
     }else{
         date = date.split('.');
         wrong[2].classList.remove('visible');
         formDate.classList.remove('wrong-input');
-        [date[0], date[1], date[2]] = [date[2], date[1], date[0]]
+        [date[0], date[1], date[2]] = [date[2], date[1], date[0]];
         let clientsDate = new Date(...date).getTime();
         if(clientsDate >= today){
             $('.wrong-date').addClass('visible');
             formDate.classList.add('wrong-input');  
             return false;
-        }else{
-            $('.wrong-date').removeClass('visible');
-            return true;
+        }
+        else{
+            // check 16 age
+            dateWorkAge = date;
+            dateWorkAge[0] = +dateWorkAge[0]+16;
+            dateWorkAge = new Date(...dateWorkAge).getTime();            
+            if(dateWorkAge > today){
+                formDate.classList.add('wrong-input');  
+                return false;
+            }else{
+                $('.wrong-date').removeClass('visible');
+                return true;
+            }
         }
     }
 }
