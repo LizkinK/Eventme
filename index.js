@@ -1,106 +1,51 @@
-module.exports = {
-    events: {},
-
-    /**
-     * @param {String} event
-     * @param {Object} subscriber
-     * @param {Function} handler
-     */
-    on: function (event, subscriber, handler) {
-        const subscriberMap = new Map([[subscriber, handler]]);
-
-        if (!this.events.hasOwnProperty(event)) {
-            this.events[event] = [];
-        } 
-        
-        this.events[event].push(subscriberMap);
-
-        return this;
+/**
+ * @param {String} date
+ * @returns {Object}
+ */
+module.exports = function (dateAll) {
+  var [date, time] = dateAll.split(' ');
+  var [years, months, days] = date.split('-');
+  var [hours, minutes] = time.split(':');
+  return {
+    years: +years,
+    months: +months,
+    days: +days, 
+    hours: +hours, 
+    minutes: +minutes,
+    add(quantity, unit) {
+      if (quantity < 0 || this[unit] === undefined) {
+        throw new TypeError();
+      } else {
+        this[unit] += quantity;
+        this.format();
+      }
+      return this;
     },
-
-    /**
-     * @param {String} event
-     * @param {Object} subscriber
-     */
-    off: function (event, subscriber) {
-        if (!this.events.hasOwnProperty(event)) {
-            return this;
-        }
-
-        this.events[event] = this.events[event].filter((item, index) => {
-            return !item.has(subscriber);
-        });
-
-        if (!this.events[event].length) {
-            delete this.events[event];
-        }
-
-        return this;
+    subtract(quantity, unit) {
+      if (quantity < 0 || this[unit] === undefined) {
+        throw new TypeError();
+      } else {
+        this[unit] -= quantity;
+        this.format();
+      }
+      return this;
     },
+    format() {
+      const newDate = new Date(this.years, this.months - 1, this.days, this.hours, this.minutes);
+      this.years = newDate.getFullYear();
+      this.months = newDate.getMonth() + 1;
+      this.days = newDate.getDate();
+      this.hours = newDate.getHours();
+      this.minutes = newDate.getMinutes();
 
-    /**
-     * @param {String} event
-     */
-    emit: function (event) {
-        if (!this.events.hasOwnProperty(event)) {
-            return this; 
-        }
+      var months = this.months.toString();
+      var days = this.days.toString();
+      var hours = this.hours.toString();
+      var minutes = this.minutes.toString();
 
-        this.events[event].forEach(item => {
-            for (var [key, value] of item) {
-                value.call(key);
-            }
-        }); 
-        
-        return this;
-    }
+      this.value = `${this.years}-${months.length > 1 ? months : '0' + months}-${days.length > 1 ? days : '0' + days} ${hours.length > 1 ? hours : '0' + hours}:${minutes.length > 1 ? minutes : '0' + minutes}`;
+    },
+    value: dateAll,
+  }	
 };
 
-
-//решение:
-var subscriptions = [];
-
-module.exports = {
-    /**
-     * @param {String} event
-     * @param {Object} subscriber
-     * @param {Function} handler
-     */
-    on: function (event, subscriber, handler) {
-        // Сохраняем полную информацию
-        subscriptions.push({
-            event: event,
-            subscriber: subscriber,
-            handler: handler
-        });
-
-        return this;
-    },
-
-    /**
-     * @param {String} event
-     * @param {Object} subscriber
-     */
-    off: function (event, subscriber) {
-        // Удаляем всю информацию, связанную с событием и подписчиком
-        subscriptions = subscriptions.filter(function (subscription) {
-            return subscription.event !== event || subscription.subscriber !== subscriber;
-        });
-
-        return this;
-    },
-
-    /**
-     * @param {String} event
-     */
-    emit: function (event) {
-        subscriptions.forEach(function (subscription) {
-            if (event === subscription.event) {
-                // Вызываем обработчик в контексте объект-подписчика
-                subscription.handler.call(subscription.subscriber);
-            }
-        });
-
-        return this;
-    }
-};
